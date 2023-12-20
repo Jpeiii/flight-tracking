@@ -169,8 +169,8 @@ class FlightList extends React.Component {
 
   // Function to call API to send email to friends for shared flight.
   sendEmail = (email, name) => {
-    const API_KEY = '48561dc44b8830b55a68448f06fbcef5-30b58138-16e45f0e';
-    const DOMAIN = 'sandboxa8c59642d32a4a48a12d6d5d8ee6a971.mailgun.org'; // Domain assigned by Mailgun
+    const API_KEY = '{api_key}';
+    const DOMAIN = '{domain}'; // Domain assigned by Mailgun
     const mailgun = new Mailgun(formData);
     const client = mailgun.client({username: 'api', key: API_KEY});
 

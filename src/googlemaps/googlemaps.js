@@ -251,7 +251,7 @@ export default function Googlemap(props) {
   const fetchWeatherHistory = async (lat, lng) => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&cnt=7&appid=4b5781b72a75650584abd7d03f3021cf&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&cnt=7&appid={api_key}&units=metric`
       );
       setShowHistoryWeather(true)
       sethistoryWeather(response.data.list);
@@ -263,7 +263,7 @@ export default function Googlemap(props) {
   const fetchWeather = async (lat,lng) => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=fe4feefa8543e06d4f3c66d92c61b69c&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid={api_key}&units=metric`
       );
       updateWeather(response.data);
     } catch (error) {
@@ -327,7 +327,7 @@ export default function Googlemap(props) {
 
   const searchFlightNumber = async (query) => {
     const response = await axios.get(
-      `https://airlabs.co/api/v9/flights?api_key=4036d633-11e3-4d4d-8412-835f4267f6ab&flight_iata=${String(query.toUpperCase().replace(/ /g,''))}` // Remove all spaces and convert to uppercase for flight query
+      `https://airlabs.co/api/v9/flights?api_key={api_key}&flight_iata=${String(query.toUpperCase().replace(/ /g,''))}` // Remove all spaces and convert to uppercase for flight query
     );
     if (response.data.response.length === 0){
       alert("Flight not found")
@@ -475,7 +475,7 @@ export default function Googlemap(props) {
     if (map){
       const waqiMapOverlay = new google.maps.ImageMapType({
         getTileUrl: function(coord, zoom) {
-          return `https://tiles.aqicn.org/tiles/usepa-aqi/${zoom}/${coord.x}/${coord.y}.png?token=ed091054-2da0-478f-b992-77a51c29e82b`;
+          return `https://tiles.aqicn.org/tiles/usepa-aqi/${zoom}/${coord.x}/${coord.y}.png?token={api_key}`;
         },
         tileSize: new google.maps.Size(256, 256),
         maxZoom: 18,
@@ -492,7 +492,7 @@ export default function Googlemap(props) {
     getCountryCode(lat, lng).then(async (countryCode) => {
       try {
         const response = await axios.get(
-          `https://airlabs.co/api/v9/suggest?q=${countryCode}&api_key=4036d633-11e3-4d4d-8412-835f4267f6ab`
+          `https://airlabs.co/api/v9/suggest?q=${countryCode}&api_key={api_key}`
         );
         if (response){
           const airports = response.data.response.airports;
@@ -510,7 +510,7 @@ export default function Googlemap(props) {
             if (airports && airports.length !== 0){
               const flag = airports[0].country_code
               const response = await axios.get(
-                `https://airlabs.co/api/v9/flights?api_key=4036d633-11e3-4d4d-8412-835f4267f6ab&flag=${flag}&limit=10`
+                `https://airlabs.co/api/v9/flights?api_key={api_key}&flag=${flag}&limit=10`
               );
               const airplanes = response.data.response;
               if (airplanes && map) {
@@ -565,7 +565,7 @@ export default function Googlemap(props) {
     const getCountryCode = async (lat, lng) => {
       try {
         const response = await axios.get(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCWW6qnh7a-zaTo0NUG27qZrw-rC31rUL0`
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key={api_key}`
         );
         const results = response.data.results;
         if (results.length > 0) {
@@ -589,7 +589,7 @@ export default function Googlemap(props) {
     const getAirportLatLong = async (airport_iata) => {
       try {
         const response = await axios.get(
-          `https://airlabs.co/api/v9/airports?iata_code=${airport_iata}&api_key=4036d633-11e3-4d4d-8412-835f4267f6ab`
+          `https://airlabs.co/api/v9/airports?iata_code=${airport_iata}&api_key={api_key}`
         );
         const results = response.data.response;
         if (results.length > 0) {
@@ -703,37 +703,9 @@ export default function Googlemap(props) {
       </Card.Header>
       <Card.Body> 
       <div style={{ height: '65vh', width: '100%' }}>
-        {/* {flights?     <div style={{ position: 'absolute', top: '20%', left: 0,  height: '70vh', width: '100%'}}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-          <div style={{ color: '#fff', fontSize: '30px', fontWeight: 'bold' }}>
-          {flights.map((flight, index) => {
-            const topValue = flight.lat + 200 + index;
-            const leftValue = flight.lng + 700 + index;
-            const rotations = [0, 90, 180, 270];
-            const rotation = rotations[Math.floor(Math.random() * rotations.length)];
-            return (
-              <div
-                key={index}
-                style={{
-                  position: "absolute",
-                  top: `${topValue}px`,
-                  left: `${leftValue}px`,
-                  zIndex: 1,
-                  fontSize: "15px",
-                  color: "gray",
-                }}
-              >
-                <FontAwesomeIcon icon={faPlane} rotation={rotation} />                     
-              </div>
-            );
-          })}
-          </div>
-        </div>
-      </div>
-      :null} */}
       <GoogleMapReact
           id="googlemap"
-          bootstrapURLKeys={{ key: "AIzaSyCWW6qnh7a-zaTo0NUG27qZrw-rC31rUL0" }}
+          bootstrapURLKeys={{ key: "{api_key}" }}
           yesIWantToUseGoogleMapApiInternals={true}
           defaultCenter={defaultProps.center}
           defaultZoom={defaultProps.zoom}
