@@ -1,0 +1,30 @@
+{
+  "name": "IT5007-Team2",
+  "version": "1.0.0",
+  "description": "IT5007-Team2",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -w server -e js,graphql server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "IT5007-Team2",
+  "license": "ISC",
+  "homepage": "http://localhost:3000/",
+  "dependencies": {
+    "apollo-server-express": "^2.3.1",
+    "express": "^4.16.4",
+    "graphql": "^0.13.2",
+    "mongodb": "^3.1.10",
+    "nodemon": "^1.18.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0"
+  }
+}

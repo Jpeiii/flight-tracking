@@ -1,0 +1,134 @@
+.weather-container {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 450px;
+    padding: 20px 10px;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px 0 #555;
+    background: white;
+    font-family: 'Montserrat';
+}
+
+.weather-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px auto;
+    text-transform: capitalize;
+    font-size: 14px;
+
+    & span {
+        font-size: 14px;
+    }
+}
+
+.weather-header-location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px auto;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.weather-info-title {
+    margin: 5px auto;
+    text-transform: capitalize;
+    text-align: start;
+    width: 90%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.weather-info-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid #ddd;
+    margin: 5px;
+}
+
+.weather-info {
+    display: flex;
+    margin: auto;
+    width: 50%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-info-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin: 15px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-info-label span {
+    font-size: 12px;
+    text-transform: capitalize;
+    font-weight: light
+}
+
+.login-background {
+    /* Add a background image or gradient here */
+    background: linear-gradient(45deg, #6DC0D5, #947BD3);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    /* Semi-transparent card */
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black overlay */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.btn-custom {
+    background-color: #4285F4;
+    /* Google blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+.btn-custom:hover {
+    background-color: #3069f0;
+    color: white;
+}
+
+.weather-close-btn {
+    margin: 10px;
+}
+
+.flight-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 90%;
+    overflow-x: 'hidden';
+    margin: 20;
+}

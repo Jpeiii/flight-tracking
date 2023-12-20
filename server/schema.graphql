@@ -1,0 +1,60 @@
+scalar GraphQLDate
+
+type User {
+  email: String! # unique ID for user
+  name: String!
+  friends: [User]
+  searchHistoryWeather: [String]
+  searchHistoryFlight: [String]
+}
+
+type Flight {
+  id: ID! # unique ID for flight
+  flightNumber: String!
+  from: String!
+  departDateTime: GraphQLDate!
+  to: String!
+  arrivalDateTime: GraphQLDate!
+  email: String!
+  name: String!
+  share: [String!]
+}
+
+input FlightInput {
+  flightNumber: String!
+  from: String!
+  departDateTime: GraphQLDate!
+  to: String!
+  arrivalDateTime: GraphQLDate!
+  email: String!
+  name: String!
+}
+
+input UpdateFlightInput {
+  flightNumber: String!
+  from: String!
+  departDateTime: GraphQLDate!
+  to: String!
+  arrivalDateTime: GraphQLDate!
+}
+
+type Query {
+  getFlights(email: String!): [Flight!]
+  getSharedFlights(email: String!): [Flight!] # Get an array of flights shared to a user
+
+  getUser(email: String!): User
+  getUserFriends(email: String!): [User!] # To get an array of user's friends
+}
+
+type Mutation{
+  deleteFlight(id: ID!): ID
+  addFlight(flight: FlightInput!): Boolean!
+  updateFlight(id: ID!, flight: UpdateFlightInput!): Boolean!
+  updateShareFlight(id: ID!, share: [String]!): Boolean! # Update a list of friends whom the flight is shared with
+
+  addUser(email: String!, name: String!): User
+  addFriend(userEmail: String!, friendEmail: String!): User
+  addLocationSearchHistory(email:String!, searchHistoryWeather: String! ): User
+  addFlightSearchHistory(email:String!, searchHistoryFlight: String! ): User
+  deleteFriend(userEmail: String!, friendEmail: String!): User 
+}
